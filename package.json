@@ -1,0 +1,27 @@
+{
+  "name": "dms-test-automation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:run": "npx ts-node runner.ts run",
+    "test:headed": "npx playwright test --headed",
+    "test:debug": "npx playwright test --debug",
+    "test:chromium": "npx playwright test --project=chromium",
+    "test:firefox": "npx playwright test --project=firefox",
+    "test:webkit": "npx playwright test --project=webkit",
+    "test:list": "npx ts-node runner.ts list",
+    "test:report": "npx ts-node runner.ts report",
+    "test:help": "npx ts-node runner.ts --help"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@playwright/test": "^1.58.0",
+    "@types/node": "^25.2.2",
+    "playwright": "^1.58.0"
+  }
+}
