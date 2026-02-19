@@ -51,7 +51,7 @@ export default async function globalsetup(config: FullConfig) {
 
         const passwordInput = page.locator('[name="Password"]');
         await passwordInput.waitFor({ state: 'visible', timeout: 20000 });
-        await passwordInput.fill('@@@@@@@@');
+        await passwordInput.fill('JoshAlti@12358@');
 
         const submitBtn = page.locator('#submitButton');
         await submitBtn.waitFor({ state: 'visible', timeout: 15000 });

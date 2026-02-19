@@ -6,8 +6,8 @@ export class ScreenshotsManager {
     constructor(
          private readonly page: Page,
         private readonly testInfo: TestInfo,
-        private readonly baseDir: string = 'screenshots',
-        private readonly runTs: string
+        // Include timestamp to match Playwright outputDir
+        private readonly timestamp: string
     ) {}
      
 
@@ -20,7 +20,8 @@ export class ScreenshotsManager {
     private targetDir(): string {
         const project = this.safeName(this.testInfo.project.name);
         const title = this.safeName(this.testInfo.title);
-        const dir = path.join(process.cwd(), this.baseDir, this.runTs, project, title);
+        // Structure: playwright-results/artifacts/{timestamp}/project/test-title/
+        const dir = path.join(process.cwd(), 'playwright-results/artifacts', this.timestamp, project, title);
         this.ensureDir(dir);
         return dir;
     }
