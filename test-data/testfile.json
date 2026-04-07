@@ -2,88 +2,26 @@
     {
         "name": "India - Corporate one",
         "noOfOpenings": "2",
-        "sectionA": {
-            "targetOnboardingDate": "19-Feb-2026",
-            "targetBillingDate": "01-Mar-2026",
-            "country": "India",
-            "company": "Altimetrik India",
-            "engagementType": "Corporate",
-            "geography": "APAC"
-        },
-        "sectionB": {
-            "confidentialHire": true,
-            "setAsPriorityJob": true,
-            "jobFamily": "Product and Platform Engineering",
-            "roleLabel": "IN-PPENG-DENG",
-            "account": "APAC BU Internal Customer",
-            "project": "ACG - AAA - Account General",
-            "businessLocation": "Chennai",
-            "jobLocation": "Chennai-Tamil Nadu-India",
-            "targetAnnualIncentive": "10000",
-            "stockOptionEquity": "No",
-            "workingModel": "Altimetrik Office",
-            "eventReason": "Client Requested"
-        },
-        "sectionD": {
-            "primarySkills": "Java"
-        }
-    },
-    {
-        "name": "India - Corporate Two",
-        "noOfOpenings": "2",
-        "sectionA": {
-            "targetOnboardingDate": "19-Feb-2026",
-            "targetBillingDate": "01-Mar-2026",
-            "country": "India",
-            "company": "Altimetrik India",
-            "engagementType": "Corporate",
-            "geography": "APAC"
-        },
-        "sectionB": {
-            "confidentialHire": true,
-            "setAsPriorityJob": true,
-            "jobFamily": "Product and Platform Engineering",
-            "roleLabel": "IN-PPENG-DENG",
-            "account": "APAC BU Internal Customer",
-            "project": "ACG - AAA - Account General",
-            "businessLocation": "Chennai",
-            "jobLocation": "Chennai-Tamil Nadu-India",
-            "targetAnnualIncentive": "10000",
-            "stockOptionEquity": "No",
-            "workingModel": "Altimetrik Office",
-            "eventReason": "Client Requested"
-        },
-        "sectionD": {
-            "primarySkills": "Java"
-        }
-    },
-    {
-        "name": "India - Corporate Three",
-        "noOfOpenings": "2",
-        "sectionA": {
-            "targetOnboardingDate": "19-Feb-2026",
-            "targetBillingDate": "01-Mar-2026",
-            "country": "India",
-            "company": "Altimetrik India",
-            "engagementType": "Corporate",
-            "geography": "APAC"
-        },
-        "sectionB": {
-            "confidentialHire": true,
-            "setAsPriorityJob": true,
-            "jobFamily": "Product and Platform Engineering",
-            "roleLabel": "IN-PPENG-DENG",
-            "account": "APAC BU Internal Customer",
-            "project": "ACG - AAA - Account General",
-            "businessLocation": "Chennai",
-            "jobLocation": "Chennai-Tamil Nadu-India",
-            "targetAnnualIncentive": "10000",
-            "stockOptionEquity": "No",
-            "workingModel": "Altimetrik Office",
-            "eventReason": "Client Requested"
-        },
-        "sectionD": {
-            "primarySkills": "Java"
-        }
+        "targetOnboardingDate": "2026-04-20",
+        "targetBillingDate": "2026-05-15",
+        "country": "India",
+        "company": "Altimetrik India",
+        "engagementType": "Corporate",
+        "geography": "APAC",
+        "confidentialHire": true,
+        "setAsPriorityJob": true,
+        "jobFamily": "Product and Platform Engineering",
+        "roleLabel": "IN-PPENG-DENG",
+        "account": "Altimetrik Internal Customer",
+        "project": "Corporate",
+        "businessLocation": "Chennai",
+        "jobLocation": "Chennai-Tamil Nadu-India",
+        "targetAnnualIncentive": "10000",
+        "stockOptionEquity": "No",
+        "workingModel": "Altimetrik Office",
+        "eventReason": "Client Requested",
+        "capabilityCentre": "Product and Platform",
+        "shift": "General Shift_COL",
+        "primarySkills": "Java"
     }
 ]

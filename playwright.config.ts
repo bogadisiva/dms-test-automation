@@ -26,7 +26,8 @@ globalSetup:require.resolve('./config/global-setup'),
   use: 
   {
     headless: false,
-    baseURL: 'https://talentcentral-dev-v2.altimetrik.com/',
+    // baseURL: 'https://talentcentral-dev-v2.altimetrik.com/',
+     baseURL: 'https://talentcentral-qa-v2.altimetrik.com/',
     actionTimeout: 0,
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
@@ -36,13 +37,13 @@ globalSetup:require.resolve('./config/global-setup'),
       name: 'chromium',
       use: { ...devices['Desktop Chrome'], storageState: 'storage/chromiumStorageState.json' },
     },
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'], storageState: 'storage/firefoxStorageState.json' }
-    },
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'], storageState: 'storage/webkitStorageState.json'},
-    },
+    // {
+    //   name: 'firefox',
+    //   use: { ...devices['Desktop Firefox'], storageState: 'storage/firefoxStorageState.json' }
+    // },
+    // {
+    //   name: 'webkit',
+    //   use: { ...devices['Desktop Safari'], storageState: 'storage/webkitStorageState.json'},
+    // },
   ],
 });

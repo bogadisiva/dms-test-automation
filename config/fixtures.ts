@@ -1,10 +1,14 @@
 import { test as base, expect } from '@playwright/test';
-import { MyActions } from '../Page/myActions';
 import { ScreenshotsManager } from '../utils/screenshotsManager';
+import { corporateDemandCentral } from '../Page/corporate_demandCentral';
+import { replacedemandCentral } from '../Page/replace_demandCentral';
+import { login } from '../Page/login';
 
 type TestFixtures = {
-    myActions: MyActions;
     shots: ScreenshotsManager;
+    corpDemandCentral: corporateDemandCentral;
+    replaceDemandCentral: replacedemandCentral;
+    login: login;
 };
 
 type WorkerFixtures = {
@@ -22,12 +26,21 @@ export const test = base.extend<TestFixtures, WorkerFixtures>({
     shots: async ({ page, timestamp }, use, testInfo) => {
         await use(new ScreenshotsManager(page, testInfo, timestamp));
     },
-
-    myActions: async ({ page, timestamp }, use, testInfo) => {
+    corpDemandCentral: async ({ page, timestamp }, use, testInfo) => {
         // await page.goto('/', { waitUntil: 'domcontentloaded' });
         const shots = new ScreenshotsManager(page, testInfo, timestamp);
-        await use(new MyActions(page, shots));
+        await use(new corporateDemandCentral(page, shots));
     },
+    replaceDemandCentral: async ({ page, timestamp }, use, testInfo) => {
+        // await page.goto('/', { waitUntil: 'domcontentloaded' });
+        const shots = new ScreenshotsManager(page, testInfo, timestamp);
+        await use(new replacedemandCentral(page, shots));
+    },
+    login: async ({ page, timestamp }, use, testInfo) => {
+        // await page.goto('/', { waitUntil: 'domcontentloaded' });
+        const shots = new ScreenshotsManager(page, testInfo, timestamp);
+        await use(new login(page, shots));
+    }
 });
 
 export { expect };
