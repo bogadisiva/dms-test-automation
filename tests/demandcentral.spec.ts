@@ -10,7 +10,8 @@
  */
 
 import { test, expect } from '../config/fixtures';
-import { corporateDemandCentral } from '../Page/corporate_demandCentral';
+// import { corporateDemandCentral } from '../Page/corporate_demandCentral';
+// import { replacedemandCentral } from '../Page/replace_demandCentral';
 import { login } from '../Page/login';
 import scenarios from '../test-data/testfile.json';
 
@@ -65,7 +66,7 @@ test.use({
 (scenarios as Scenario[]).forEach((scenario) => {
   test(
     `Create a corporate position for ${scenario.name}`,
-    { tag: '@smoke' },
+    { tag: '@smoke'},
     async ({ corpDemandCentral, login }) => {
       test.setTimeout(180000); // 3 minutes timeout
 
@@ -92,4 +93,36 @@ test.use({
         await corpDemandCentral.verifyPositionCreation();
       });
     });
+
+test(
+  'Create a replacement position for ${scenario.name}',
+    { tag: '@replacement'},
+    async ({ replaceDemandCentral, login }) => {
+      test.setTimeout(180000); // 3 minutes timeout
+
+      // Step 1: Navigate to Demand Central
+      await test.step('Navigate to Demand Central (Updated UI)', async () => {
+        await login.navigateToDemandCentral();
+      });
+
+      await test.step('Select Job Type as Replacement Position', async () => {
+        await replaceDemandCentral.createReplacedPosition();
+      });
+
+      await test.step('Job Details', async () => {
+        await replaceDemandCentral.fillJobDetails(scenario);
+      });
+
+      // Step 4: Verify Update button is enabled
+      await test.step('Verify form validation and enable Update button', async () => {
+        await replaceDemandCentral.verifyPublishButtonEnabled();
+      });
+
+      // Step 5: Verify position creation success
+      await test.step('Verify position creation success', async () => {
+        await replaceDemandCentral.verifyPositionCreation();
+      });
+    });
+
+    
 });

@@ -26,8 +26,8 @@ globalSetup:require.resolve('./config/global-setup'),
   use: 
   {
     headless: false,
-    // baseURL: 'https://talentcentral-dev-v2.altimetrik.com/',
-     baseURL: 'https://talentcentral-qa-v2.altimetrik.com/',
+    baseURL: 'https://talentcentral-dev-v2.altimetrik.com/',
+    //  baseURL: 'https://talentcentral-qa-v2.altimetrik.com/',
     actionTimeout: 0,
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',

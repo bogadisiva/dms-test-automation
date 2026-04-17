@@ -203,4 +203,9 @@ export class DemandCentralLocators {
       'div.ant-drawer-content.dms-enrichment-modal[role="dialog"][aria-modal="true"]'
     );
   }
+  // Form Fields
+  get accountGroupInput() {
+    return this.page.locator('[id="customerAccountGroup"]');
+  }
+
 }

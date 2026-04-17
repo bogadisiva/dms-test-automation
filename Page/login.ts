@@ -17,7 +17,7 @@ private locators: DemandCentralLocators;
         await this.locators.usernameInput.fill('sbhogadi@altimetrik.com');
         await this.locators.signInButton.click();
         await this.page.waitForTimeout(5000);
-        await this.locators.passwordInput.fill('JoshAlti@12358@');
+        await this.locators.passwordInput.fill('JoshAlti@12358#');
         await this.locators.submitButton.click();
         await this.page.waitForTimeout(5000);
         await this.locators.signInButton.click();

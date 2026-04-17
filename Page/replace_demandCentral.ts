@@ -3,11 +3,11 @@ import { ScreenshotsManager } from '../utils/screenshotsManager';
 import { DemandCentralLocators } from '../utils/locators/demandCentralLocators';
 
 export class replacedemandCentral {
-private locators: DemandCentralLocators;
+    private locators: DemandCentralLocators;
     constructor(
         readonly page: Page,
         private readonly shots?: ScreenshotsManager // optional if you call shots sometimes
-    ) { 
+    ) {
         this.locators = new DemandCentralLocators(page);
     }
     private modalWindow() {
@@ -43,7 +43,10 @@ private locators: DemandCentralLocators;
     async createReplacedPosition() {
         const createPositionButton = this.locators.createPositionButton;
         await expect(createPositionButton).toBeVisible({ timeout: 10000 });
+        await createPositionButton.click();
+
         await this.locators.createReplacedPositionButton.click();
+        this.locators.enterReqId.fill('12345');
         const nextButtonCreatePosition = this.locators.nextButtonCreatePosition;
         await expect(nextButtonCreatePosition).toBeVisible({ timeout: 10000 });
         await nextButtonCreatePosition.click();
@@ -66,6 +69,11 @@ private locators: DemandCentralLocators;
         await this.page.getByRole('textbox', { name: 'Search...' }).fill(data.roleLabel);
         //   await page.getByRole('radio', { name: 'IN-PPENG-SRENG' }).check();
         await this.page.getByLabel(data.roleLabel, { exact: true }).click();
+        await this.page.waitForTimeout(2000);
+
+        // 7. Select 'Accuount Group Name' as 'Altimetrik Internal Customer'
+        await this.locators.accountGroupInput.fill('Altimetrik Internal Customer');
+        await this.page.click('div[class="rc-virtual-list-holder"] div[title="' + 'Altimetrik Internal Customer' + '"]:visible');
         await this.page.waitForTimeout(2000);
 
 
@@ -133,6 +141,11 @@ private locators: DemandCentralLocators;
         await this.page.click('div[class="rc-virtual-list-holder"] div[title="' + data.workingModel + '"]:visible');
         await this.page.waitForTimeout(2000);
 
+        // 12. Select 'Geography' as 'APAC'
+        await this.page.fill('[id="geoGraphy"]', 'APAC');
+        await this.page.click('div[class="rc-virtual-list-holder"] div[title="APAC"]:visible');
+        await this.page.waitForTimeout(2000);
+
         await this.locators.primarySkillsInput.click();
         await this.locators.primarySkillsInput.fill(data.primarySkills);
         await this.page.click('div[class="rc-virtual-list-holder"] div[title="' + data.primarySkills + '"]:visible');
@@ -171,7 +184,7 @@ private locators: DemandCentralLocators;
     }
     async verifyPositionCreation() {
 
-        const confirmation = this.page.getByText(/Position published successfully. Awaiting CFO Approval./i);
+        const confirmation = this.page.getByText(/Position details saved successfully/i);
         await expect(confirmation).toBeVisible({ timeout: 10000 });
         if (this.shots) await this.shots.capture('positionCreated');
         // await this.page.screenshot({ path: 'positionCreated.png', fullPage: true });
