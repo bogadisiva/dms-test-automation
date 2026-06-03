@@ -54,6 +54,11 @@ private locators: DemandCentralLocators;
     }
     async fillJobDetails(data: any) {
         await this.page.waitForTimeout(5000);
+
+        //verify demand type is defaulted to corporate
+        await expect(this.locators.corpDemandType).toHaveText('Corporate', { timeout: 10000 }); 
+
+
         // 4. Select 'Job Family' as 'Product and Platform Engineering' and wait for 'Available Roles' section
         await this.locators.jobFamilyInput.fill(data.jobFamily);
         await this.page.click('div[class="rc-virtual-list-holder"] div[title="' + data.jobFamily + '"]:visible');
@@ -98,13 +103,14 @@ private locators: DemandCentralLocators;
         await this.page.keyboard.press('Tab');
         await this.page.waitForTimeout(2000);
 
-        // 7. Select 'Job Location' as 'Chennai'
+        // 7. Select 'Job Location' 
         await this.locators.jobLocationInput.click();
-        await this.page.fill('[id="jobLocation"]', data.businessLocation);
+        var jobLocationSplit=data.jobLocation.split('-').join(' ').trim(); // Convert "San Francisco-California-United States" to "San Francisco California United States"   
+        await this.page.fill('[id="jobLocation"]', jobLocationSplit);
         await this.page.click('div[class="rc-virtual-list-holder"] div[title="' + data.jobLocation + '"]:visible');
         await this.page.waitForTimeout(2000);
 
-        // 7. Select 'Business Location' as 'Chennai'
+        // 7. Select 'Business Location'
         await this.locators.businessLocationInput.fill(data.businessLocation);
         await this.page.click('div[class="rc-virtual-list-holder"] div[title="' + data.businessLocation + '"]:visible');
         await this.page.waitForTimeout(3000);
@@ -127,6 +133,7 @@ private locators: DemandCentralLocators;
         await this.locators.engagementTypeInput.fill(data.engagementType);
         await this.page.click('div[class="rc-virtual-list-holder"] div[title="Corporate"]:visible');
         await this.page.waitForTimeout(2000);
+
 
         // 12. Select 'Working Model' as 'Altimetrik Office'
         await this.page.fill('[id="workingModel"]', data.workingModel);
@@ -171,7 +178,8 @@ private locators: DemandCentralLocators;
     }
     async verifyPositionCreation() {
 
-        const confirmation = this.page.getByText(/Position published successfully. Awaiting CFO Approval./i);
+        // const confirmation = this.page.getByText(/Position published successfully. Awaiting CFO Approval./i);
+        const confirmation = this.page.getByText(/Position details saved successfully/i);
         await expect(confirmation).toBeVisible({ timeout: 10000 });
         if (this.shots) await this.shots.capture('positionCreated');
         // await this.page.screenshot({ path: 'positionCreated.png', fullPage: true });

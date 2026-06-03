@@ -2,12 +2,14 @@ import { test as base, expect } from '@playwright/test';
 import { ScreenshotsManager } from '../utils/screenshotsManager';
 import { corporateDemandCentral } from '../Page/corporate_demandCentral';
 import { replacedemandCentral } from '../Page/replace_demandCentral';
+import { SFDCPage } from '../Page/sfdcPage';
 import { login } from '../Page/login';
 
 type TestFixtures = {
     shots: ScreenshotsManager;
     corpDemandCentral: corporateDemandCentral;
     replaceDemandCentral: replacedemandCentral;
+    sfdcPage: SFDCPage;
     login: login;
 };
 
@@ -35,6 +37,11 @@ export const test = base.extend<TestFixtures, WorkerFixtures>({
         // await page.goto('/', { waitUntil: 'domcontentloaded' });
         const shots = new ScreenshotsManager(page, testInfo, timestamp);
         await use(new replacedemandCentral(page, shots));
+    },
+    sfdcPage: async ({ page, timestamp }, use, testInfo) => {
+        // await page.goto('/', { waitUntil: 'domcontentloaded' });
+        const shots = new ScreenshotsManager(page, testInfo, timestamp);
+        await use(new SFDCPage(page, shots));
     },
     login: async ({ page, timestamp }, use, testInfo) => {
         // await page.goto('/', { waitUntil: 'domcontentloaded' });

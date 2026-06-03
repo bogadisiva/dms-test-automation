@@ -207,5 +207,10 @@ export class DemandCentralLocators {
   get accountGroupInput() {
     return this.page.locator('[id="customerAccountGroup"]');
   }
-
+  get corpDemandType() {
+    return this.page.locator('(//label[text()="Demand Type"]/..//label)[2]//div');
+  }
+  get replaceDemandType() {
+    return this.page.locator('[id="demandType"]');
+  }
 }

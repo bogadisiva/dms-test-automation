@@ -49,11 +49,11 @@ export default async function globalsetup(config: FullConfig) {
             // If the button isn't visible, continue — the flow may have auto-advanced
         }
 
-        const passwordInput = page.locator('[name="Password"]');
+        const passwordInput = page.locator('[name="passwd"]');
         await passwordInput.waitFor({ state: 'visible', timeout: 20000 });
         await passwordInput.fill('JoshAlti@12358#');
 
-        const submitBtn = page.locator('#submitButton');
+        const submitBtn = page.locator('input[type="submit"]');
         await submitBtn.waitFor({ state: 'visible', timeout: 15000 });
         await submitBtn.click();
 

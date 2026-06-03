@@ -13,12 +13,15 @@ import { test, expect } from '../config/fixtures';
 // import { corporateDemandCentral } from '../Page/corporate_demandCentral';
 // import { replacedemandCentral } from '../Page/replace_demandCentral';
 import { login } from '../Page/login';
-import scenarios from '../test-data/testfile.json';
+import testDataFile from '../test-data/testfile.json';
+
+// Extract Demand Central test data from testfile.json
+const scenarios = testDataFile.demandCentral;
 
 type Scenario = {
   name: string;
+    execute: boolean;
   noOfOpenings: string;
-
   targetOnboardingDate: string;
   targetBillingDate: string;
   country: string;
@@ -31,6 +34,7 @@ type Scenario = {
   roleLabel: string;
   account: string;
   project: string;
+  capabilityCentre: string;
   businessLocation: string;
   jobLocation: string;
   targetAnnualIncentive: string;
@@ -38,6 +42,7 @@ type Scenario = {
   workingModel: string;
   eventReason: string;
   primarySkills: string;
+  demandtypeReplacement: string;
 };
 
 test.beforeAll(async () => {
@@ -64,12 +69,15 @@ test.use({
  * All sections (A, B, C, D) are now on one screen instead of multiple modals.
  */
 (scenarios as Scenario[]).forEach((scenario) => {
-  test(
-    `Create a corporate position for ${scenario.name}`,
-    { tag: '@smoke'},
+  
+  test(`Create a corporate position for ${scenario.name}`, { tag: ['@corporate','@sanity'] },
+    
+    // test.skip(!scenario.execute, `Execution flag set to false for in json file for the scenario ${scenario.name}`);
+    // test.skip(!scenario.execute, 'Skipped because execute=false in JSON');
+
     async ({ corpDemandCentral, login }) => {
       test.setTimeout(180000); // 3 minutes timeout
-
+    test.skip(!scenario.execute, 'Skipped because execute=false in JSON');
       // Step 1: Navigate to Demand Central
       await test.step('Navigate to Demand Central (Updated UI)', async () => {
         await login.navigateToDemandCentral();
@@ -94,9 +102,9 @@ test.use({
       });
     });
 
-test(
-  'Create a replacement position for ${scenario.name}',
-    { tag: '@replacement'},
+  test(
+    `Create a replacement position for ${scenario.name}`,
+    { tag: ['@replacement','@sanity'] },
     async ({ replaceDemandCentral, login }) => {
       test.setTimeout(180000); // 3 minutes timeout
 
@@ -123,6 +131,4 @@ test(
         await replaceDemandCentral.verifyPositionCreation();
       });
     });
-
-    
 });

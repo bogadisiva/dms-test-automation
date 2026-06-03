@@ -106,13 +106,14 @@ export class replacedemandCentral {
         await this.page.keyboard.press('Tab');
         await this.page.waitForTimeout(2000);
 
-        // 7. Select 'Job Location' as 'Chennai'
+        // 7. Select 'Job Location'
         await this.locators.jobLocationInput.click();
-        await this.page.fill('[id="jobLocation"]', data.businessLocation);
+        var jobLocationSplit=data.jobLocation.split('-').join(' ').trim(); // Convert "San Francisco-California-United States" to "San Francisco California United States"   
+        await this.page.fill('[id="jobLocation"]', jobLocationSplit);
         await this.page.click('div[class="rc-virtual-list-holder"] div[title="' + data.jobLocation + '"]:visible');
         await this.page.waitForTimeout(2000);
 
-        // 7. Select 'Business Location' as 'Chennai'
+        // 7. Select 'Business Location'
         await this.locators.businessLocationInput.fill(data.businessLocation);
         await this.page.click('div[class="rc-virtual-list-holder"] div[title="' + data.businessLocation + '"]:visible');
         await this.page.waitForTimeout(3000);
@@ -134,6 +135,10 @@ export class replacedemandCentral {
 
         await this.locators.engagementTypeInput.fill(data.engagementType);
         await this.page.click('div[class="rc-virtual-list-holder"] div[title="Corporate"]:visible');
+        await this.page.waitForTimeout(2000);
+
+        await this.locators.replaceDemandType.fill(data.demandtypeReplacement);
+        await this.page.click('div[class="rc-virtual-list-holder"] div[title="' + data.demandtypeReplacement + '"]:visible');
         await this.page.waitForTimeout(2000);
 
         // 12. Select 'Working Model' as 'Altimetrik Office'
