@@ -18,13 +18,13 @@ type WorkerFixtures = {
 };
 
 export const test = base.extend<TestFixtures, WorkerFixtures>({
-    // ✅ worker-scoped: created once per worker (good for parallel)
+    // worker-scoped: created once per worker (good for parallel)
     timestamp: [async ({ }, use) => {
         const ts = new Date().toISOString().replace(/[:.]/g, '-');
         await use(ts);
     }, { scope: 'worker' }],
 
-    // ✅ test-scoped: gets TestInfo
+    // test-scoped: gets TestInfo
     shots: async ({ page, timestamp }, use, testInfo) => {
         await use(new ScreenshotsManager(page, testInfo, timestamp));
     },

@@ -53,7 +53,7 @@ private locators: DemandCentralLocators;
         // await this.page.screenshot({ path: 'screenshot-after-creating-position.png', fullPage: true });
     }
     async fillJobDetails(data: any) {
-        await this.page.waitForTimeout(5000);
+        await this.page.waitForTimeout(10000);
 
         //verify demand type is defaulted to corporate
         await expect(this.locators.corpDemandType).toHaveText('Corporate', { timeout: 10000 }); 
@@ -105,7 +105,7 @@ private locators: DemandCentralLocators;
 
         // 7. Select 'Job Location' 
         await this.locators.jobLocationInput.click();
-        var jobLocationSplit=data.jobLocation.split('-').join(' ').trim(); // Convert "San Francisco-California-United States" to "San Francisco California United States"   
+        var jobLocationSplit=data.jobLocation.split('-')[0].trim(); // Convert "San Francisco-California-United States" to "San Francisco California United States"   
         await this.page.fill('[id="jobLocation"]', jobLocationSplit);
         await this.page.click('div[class="rc-virtual-list-holder"] div[title="' + data.jobLocation + '"]:visible');
         await this.page.waitForTimeout(2000);

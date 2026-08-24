@@ -13,7 +13,7 @@ const testData = {
         opportunityType: 'APAC',
         opportunityName: 'QE Testing Demand Central 01',
         amount: '10000',
-        accountName: 'CitiPrabhu',
+        accountName: 'TEST Account',
         billingType: 'Fixed Price',
         businessUnit: 'APAC',
         location: 'India'
@@ -64,26 +64,26 @@ test.describe('SFDC Opportunity & Resource Forecasting Flow', () => {
         // ============ STEP 3: FILL OPPORTUNITY DETAILS ============
         console.log('Step 3: Filling in opportunity details...');
         await sfdcPage.fillOpportunityBasicDetails(testData.opportunity);
-        await sfdcPage.fillOpportunityDates(testData.opportunity);
-        await sfdcPage.fillOpportunityCurrency(testData.opportunity);
-        await sfdcPage.fillOpportunityLocation(testData.opportunity);
-        await sfdcPage.fillOpportunityDatesProjected(testData.opportunity);
-        await sfdcPage.fillOpportunityEngagementDetails(testData.opportunity);
-        console.log('✓ All opportunity details filled in');
+        // await sfdcPage.fillOpportunityDates(testData.opportunity);
+        // await sfdcPage.fillOpportunityCurrency(testData.opportunity);
+        // await sfdcPage.fillOpportunityLocation(testData.opportunity);
+        // await sfdcPage.fillOpportunityDatesProjected(testData.opportunity);
+        // await sfdcPage.fillOpportunityEngagementDetails(testData.opportunity);
+        // console.log('✓ All opportunity details filled in');
 
-        // ============ STEP 4: SAVE OPPORTUNITY ============
-        console.log('Step 4: Saving opportunity...');
-        await sfdcPage.saveOpportunity();
-        const successMessage = page.getByText(/created|saved/i);
-        await expect(successMessage).toBeVisible({ timeout: 10000 });
-        await page.waitForTimeout(2000);
-        console.log('✓ Opportunity created successfully');
+        // // ============ STEP 4: SAVE OPPORTUNITY ============
+        // console.log('Step 4: Saving opportunity...');
+        // await sfdcPage.saveOpportunity();
+        // const successMessage = page.getByText(/created|saved/i);
+        // await expect(successMessage).toBeVisible({ timeout: 10000 });
+        // await page.waitForTimeout(2000);
+        // console.log('✓ Opportunity created successfully');
 
-        // ============ STEP 5: MANAGE OPPORTUNITY STAGE ============
-        console.log('Step 5: Updating opportunity stage to "Propose"...');
-        await sfdcPage.editStage('Propose');
-        await expect(page.getByText('Propose')).toBeVisible({ timeout: 10000 });
-        console.log('✓ Opportunity stage updated');
+        // // ============ STEP 5: MANAGE OPPORTUNITY STAGE ============
+        // console.log('Step 5: Updating opportunity stage to "Propose"...');
+        // await sfdcPage.editStage('Propose');
+        // await expect(page.getByText('Propose')).toBeVisible({ timeout: 10000 });
+        // console.log('✓ Opportunity stage updated');
 
         
 

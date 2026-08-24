@@ -15,7 +15,7 @@ export class SFDCPage {
     // ===== Authentication Methods =====
     async login(username: string, password: string) {
         await this.locators.usernameInput.fill(username);
-        await this.locators.usernameInput.press('Tab');
+        await this.locators.logInButton.click();
         await this.locators.passwordInput.fill(password);
         await this.locators.logInButton.click();
         await this.page.waitForTimeout(2000);
@@ -59,6 +59,8 @@ export class SFDCPage {
 
         // Select Account Name
         await this.locators.accountNameCombobox.click();
+        await this.locators.accountNameCombobox.fill(data.accountName);
+        await this.page.waitForTimeout(1000);
         await this.locators.selectAccountName(data.accountName).click();
         await this.page.waitForTimeout(1000);
 
@@ -68,7 +70,7 @@ export class SFDCPage {
         await this.page.waitForTimeout(1000);
 
         // Select Business Unit
-        await this.locators.businessUnitCombobox.click();
+        // await this.locators.businessUnitCombobox.click();
         await this.locators.apacOption.click();
         await this.page.waitForTimeout(1000);
 

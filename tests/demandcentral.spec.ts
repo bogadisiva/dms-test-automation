@@ -20,7 +20,7 @@ const scenarios = testDataFile.demandCentral;
 
 type Scenario = {
   name: string;
-    execute: boolean;
+  execute: boolean;
   noOfOpenings: string;
   targetOnboardingDate: string;
   targetBillingDate: string;
@@ -69,15 +69,15 @@ test.use({
  * All sections (A, B, C, D) are now on one screen instead of multiple modals.
  */
 (scenarios as Scenario[]).forEach((scenario) => {
-  
-  test(`Create a corporate position for ${scenario.name}`, { tag: ['@corporate','@sanity'] },
-    
+
+  test(`Create a corporate position for ${scenario.name}`, { tag: ['@corporate', '@sanity'] },
+
     // test.skip(!scenario.execute, `Execution flag set to false for in json file for the scenario ${scenario.name}`);
     // test.skip(!scenario.execute, 'Skipped because execute=false in JSON');
 
     async ({ corpDemandCentral, login }) => {
       test.setTimeout(180000); // 3 minutes timeout
-    test.skip(!scenario.execute, 'Skipped because execute=false in JSON');
+      test.skip(!scenario.execute, 'Skipped because execute=false in JSON');
       // Step 1: Navigate to Demand Central
       await test.step('Navigate to Demand Central (Updated UI)', async () => {
         await login.navigateToDemandCentral();
@@ -104,7 +104,7 @@ test.use({
 
   test(
     `Create a replacement position for ${scenario.name}`,
-    { tag: ['@replacement','@sanity'] },
+    { tag: ['@replacement', '@sanity'] },
     async ({ replaceDemandCentral, login }) => {
       test.setTimeout(180000); // 3 minutes timeout
 
