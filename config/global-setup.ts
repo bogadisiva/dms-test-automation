@@ -34,40 +34,40 @@ export default async function globalsetup(config: FullConfig) {
         const page = await browser.newPage();
         console.log(`**Running global setup for ${browserName}**`);
 
-        await page.goto('https://talentcentral-dev-v2.altimetrik.com/');
+        await page.goto('https://vinothqaacademy.com/');
         await page.waitForLoadState('domcontentloaded');
 
-        const emailInput = page.locator('[name="loginfmt"]');
-        await emailInput.waitFor({ state: 'visible', timeout: 15000 });
-        await emailInput.fill('sbhogadi@altimetrik.com');
+        // const emailInput = page.locator('[name="loginfmt"]');
+        // await emailInput.waitFor({ state: 'visible', timeout: 15000 });
+        // await emailInput.fill('sbhogadi@altimetrik.com');
 
-        const nextButton = page.locator('#idSIButton9');
-        try {
-            await nextButton.waitFor({ state: 'visible', timeout: 15000 });
-            await nextButton.click();
-        } catch (e) {
-            // If the button isn't visible, continue — the flow may have auto-advanced
-        }
+        // const nextButton = page.locator('#idSIButton9');
+        // try {
+        //     await nextButton.waitFor({ state: 'visible', timeout: 15000 });
+        //     await nextButton.click();
+        // } catch (e) {
+        //     // If the button isn't visible, continue — the flow may have auto-advanced
+        // }
 
-        const passwordInput = page.locator('[name="passwd"]');
-        await passwordInput.waitFor({ state: 'visible', timeout: 20000 });
-        await passwordInput.fill('JoshAlti@12358$');
+        // const passwordInput = page.locator('[name="passwd"]');
+        // await passwordInput.waitFor({ state: 'visible', timeout: 20000 });
+        // await passwordInput.fill('JoshAlti@12358$');
 
-        const submitBtn = page.locator('input[type="submit"]');
-        await submitBtn.waitFor({ state: 'visible', timeout: 15000 });
-        await submitBtn.click();
+        // const submitBtn = page.locator('input[type="submit"]');
+        // await submitBtn.waitFor({ state: 'visible', timeout: 15000 });
+        // await submitBtn.click();
 
-        // Handle optional "Stay signed in?" dialog which may reuse the same id
-        try {
-            const staySignedIn = page.locator('#idSIButton9');
-            await staySignedIn.waitFor({ state: 'visible', timeout: 15000 });
-            await staySignedIn.click();
-        } catch (e) {
-            // Not always present — safe to continue
-        }
+        // // Handle optional "Stay signed in?" dialog which may reuse the same id
+        // try {
+        //     const staySignedIn = page.locator('#idSIButton9');
+        //     await staySignedIn.waitFor({ state: 'visible', timeout: 15000 });
+        //     await staySignedIn.click();
+        // } catch (e) {
+        //     // Not always present — safe to continue
+        // }
 
-        await page.waitForLoadState('networkidle');
-        await expect(page).toHaveTitle(/Workbench/, { timeout: 60000 });
+        // await page.waitForLoadState('networkidle');
+        // await expect(page).toHaveTitle(/Workbench/, { timeout: 60000 });
         await page.context().storageState({ path: storageState as string });
         await browser.close();
 
