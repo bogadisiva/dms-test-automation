@@ -7,6 +7,7 @@ node_modules/
 # Playwright
 # ========================
 playwright-report/
+playwright-results/
 test-results/
 blob-report/
 screenshots/

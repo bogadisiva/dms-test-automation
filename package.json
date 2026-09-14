@@ -13,7 +13,13 @@
     "test:webkit": "npx playwright test --project=webkit",
     "test:list": "npx ts-node runner.ts list",
     "test:report": "npx ts-node runner.ts report",
-    "test:help": "npx ts-node runner.ts --help"
+    "test:help": "npx ts-node runner.ts --help",
+    "clean:all": "npx ts-node utils/cleanup.ts all",
+    "clean:artifacts": "npx ts-node utils/cleanup.ts artifacts",
+    "clean:reports": "npx ts-node utils/cleanup.ts reports",
+    "clean:size": "npx ts-node utils/cleanup.ts size",
+    "test:clean": "npm run clean:all && npm run test",
+    "test:clean:headed": "npm run clean:all && npm run test:headed"
   },
   "keywords": [],
   "author": "",

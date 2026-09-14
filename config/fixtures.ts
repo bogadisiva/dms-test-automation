@@ -1,32 +1,53 @@
 import { test as base, expect } from '@playwright/test';
-import { MyActions } from '../Page/myActions';
 import { ScreenshotsManager } from '../utils/screenshotsManager';
+import { corporateDemandCentral } from '../Page/corporate_demandCentral';
+import { replacedemandCentral } from '../Page/replace_demandCentral';
+import { SFDCPage } from '../Page/sfdcPage';
+import { login } from '../Page/login';
+
 type TestFixtures = {
-    myActions: MyActions;
     shots: ScreenshotsManager;
+    corpDemandCentral: corporateDemandCentral;
+    replaceDemandCentral: replacedemandCentral;
+    sfdcPage: SFDCPage;
+    login: login;
 };
 
 type WorkerFixtures = {
-    runTs: string;
+    timestamp: string;
 };
 
 export const test = base.extend<TestFixtures, WorkerFixtures>({
-    // ✅ worker-scoped: created once per worker (good for parallel)
-    runTs: [async ({ }, use) => {
+    // worker-scoped: created once per worker (good for parallel)
+    timestamp: [async ({ }, use) => {
         const ts = new Date().toISOString().replace(/[:.]/g, '-');
         await use(ts);
     }, { scope: 'worker' }],
 
-    // ✅ test-scoped: gets TestInfo
-    shots: async ({ page, runTs }, use, testInfo) => {
-        await use(new ScreenshotsManager(page, testInfo, 'screenshots', runTs));
+    // test-scoped: gets TestInfo
+    shots: async ({ page, timestamp }, use, testInfo) => {
+        await use(new ScreenshotsManager(page, testInfo, timestamp));
     },
-
-    myActions: async ({ page }, use, testInfo) => {
+    corpDemandCentral: async ({ page, timestamp }, use, testInfo) => {
         // await page.goto('/', { waitUntil: 'domcontentloaded' });
-        const shots = new ScreenshotsManager(page, testInfo, 'screenshots', process.env.RUN_TS ?? 'local');
-        await use(new MyActions(page, shots));
+        const shots = new ScreenshotsManager(page, testInfo, timestamp);
+        await use(new corporateDemandCentral(page, shots));
     },
+    replaceDemandCentral: async ({ page, timestamp }, use, testInfo) => {
+        // await page.goto('/', { waitUntil: 'domcontentloaded' });
+        const shots = new ScreenshotsManager(page, testInfo, timestamp);
+        await use(new replacedemandCentral(page, shots));
+    },
+    sfdcPage: async ({ page, timestamp }, use, testInfo) => {
+        // await page.goto('/', { waitUntil: 'domcontentloaded' });
+        const shots = new ScreenshotsManager(page, testInfo, timestamp);
+        await use(new SFDCPage(page, shots));
+    },
+    login: async ({ page, timestamp }, use, testInfo) => {
+        // await page.goto('/', { waitUntil: 'domcontentloaded' });
+        const shots = new ScreenshotsManager(page, testInfo, timestamp);
+        await use(new login(page, shots));
+    }
 });
 
 export { expect };
